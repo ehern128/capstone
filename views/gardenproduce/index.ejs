@@ -1,0 +1,17 @@
+<% layout("./layouts/boilerplate") %>
+    <h1>All Garden Produce</h1>
+    <div>
+
+        <a href="/newGardenProduce/new">Create a new Garden Produce</a>
+    </div>
+	<ul>
+        <% for (let gardenproduce of gardenproduces) {%>
+        
+            <li><a href="newGardenProduce/<%= gardenproduce.id %>"><%= gardenproduce.name %></a></li>
+
+        <% } %>
+
+    </ul>
+
+
+    

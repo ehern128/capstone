@@ -1,0 +1,32 @@
+<% layout("./layouts/boilerplate") %>
+<h1>Create a new Garden Produce</h1>
+<form class="needs-validation" action="/newGardenProduce" method="POST" novalidate>
+	<div class="mb-3">
+		<label class="form-label" for="name">Garden Produce Name</label>
+		<input class="form-control" type="text" id="name" name="gardenproduce[name]" required>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="location">Garden Produce Location</label>
+		<input class="form-control" type="text" id="location" name="gardenproduce[location]" required>
+	</div>
+	<div class="mb-3">
+        <label class="form-label" for="image">Garden Produce Image</label>
+        <input class="form-control" type="text" id="image" name="gardenproduce[image]" required>
+    </div>
+	<div class="mb-3">
+		<label class="form-label" for="price">Garden Produce Price</label>
+		<select class="form-control" name="gardenproduce[price]" id="price" required>
+			<option value="$">$</option>
+			<option value="$$">$$</option>
+			<option value="$$$">$$$</option>
+		</select>
+	</div>
+    <div class="mb-3">
+        <label class="form-label" for="description">Garden Produce Description</label>
+        <input class="form-control" type="text" id="description" name="gardenproduce[description]" required>
+    </div>
+	<button>Submit</button>
+
+</form>
+
+<a href="/newGardenProduce">Go back to Garden Produces</a>

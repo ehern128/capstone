@@ -1,0 +1,68 @@
+<% layout("./layouts/boilerplate") %>
+<link rel="stylesheet" href="/stars.css">
+
+<img style="width: 600px" src="<%=gardenproduce.image%>" alt="">
+    <h1><%= gardenproduce.name %></h1>
+    <h2><%= gardenproduce.price %></h2>
+    <h3><%= gardenproduce.location %></h3>
+    <p><%= gardenproduce.description%></p>
+
+
+    <a href="/newGardenProduce">Go back to all the Garden Produces</a>
+    <form action="/newGardenProduce/<%=gardenproduce.id%>/delete?_method=DELETE" method="POST">
+        <button>Delete Garden Produce</button>
+    </form>
+
+
+    <% if(user) { %>
+        <h2>Leave a Review</h2>
+        <form class="needs-validation" action="/newGardenProduce/<%=gardenproduce.id%>/reviews" method="POST" novalidate>
+            <!-- <div>
+                <label class="form-label" for="rating">Rating</label>
+                <input class="form-range" name="review[rating]" type="range" min="1" max="5" step="1" required>
+            </div> -->
+            <fieldset class="starability-heart">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
+                    aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+            <div>
+                <label class="form-label" for="body">Review</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+            </div>
+            <button>Submit</button>
+        </form>
+    <% } %>
+
+    <div>
+        <h3>Reviews</h3>
+        <% for (let reviews of gardenproduce.reviews) {%>
+        <div>
+            <p>Rating: <%=reviews.rating%></p>
+            <p>Reviews: <%=reviews.body%></p>
+            <p>Submitted By: <%= restaurant.submittedBy.username  %> </p>
+            <p class="starability-result" data-rating="<%=reviews.rating%>">
+                Rated: <%=reviews.rating%> stars
+            </p>
+            <% if(user && reviews.author.equals(user) ) { %>
+            <form action="/restaurants/<%=restaurant.id%>/reviews/<%=reviews.id%>?_method=delete" method="POST">
+                <button>Delete</button>
+            </form>
+            <% } %>
+        </div>
+        <%}%>
+    </div>
+
+    <div>
+        <a href="/newGardenProduce/<%=gardenproduce.id%>/edit">Edit <%= gardenproduce.name %> </a>
+    </div>
+

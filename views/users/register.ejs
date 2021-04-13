@@ -1,0 +1,17 @@
+<% layout("./layouts/boilerplate") %>
+<h1>Register</h1>
+<form action="/register" class="mt-8 needs-validation" method="POST" novalidate>
+    <div class="mb-3">
+        <label class="form-label" for="username">Username</label>
+        <input class="form-control" type="text" id="username" name="username" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="email" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-control" type="password" id="password" name="password" required>
+    </div>
+    <button class="mt-8 bg-green-400 block w-full rounded py-2 text-xl text-green-100">Register</button>
+</form>
